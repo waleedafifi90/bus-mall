@@ -26,10 +26,23 @@ function Product(name, url) {
 new Product('Bag', 'assets/img/bag.jpg');
 new Product('Banana', 'assets/img/banana.jpg');
 new Product('Bathroom', 'assets/img/bathroom.jpg');
-new Product('boots', 'assets/img/boots.jpg');
-new Product('breakfast', 'assets/img/breakfast.jpg');
-new Product('bubblegum', 'assets/img/bubblegum.jpg');
-new Product('chair', 'assets/img/chair.jpg');
+new Product('Boots', 'assets/img/boots.jpg');
+new Product('Breakfast', 'assets/img/breakfast.jpg');
+new Product('Bubblegum', 'assets/img/bubblegum.jpg');
+new Product('Chair', 'assets/img/chair.jpg');
+new Product('Cthulhu', 'assets/img/cthulhu.jpg');
+new Product('Dog duck', 'assets/img/dog-duck.jpg');
+new Product('Dragon', 'assets/img/dragon.jpg');
+new Product('Pen', 'assets/img/pen.jpg');
+new Product('Pet sweep', 'assets/img/pet-sweep.jpg');
+new Product('Scissors', 'assets/img/scissors.jpg');
+new Product('Sweep', 'assets/img/sweep.jpg');
+new Product('Tauntaun', 'assets/img/tauntaun.jpg');
+new Product('Shark', 'assets/img/shark.jpg');
+new Product('Unicorn', 'assets/img/unicorn.jpg');
+new Product('Usb', 'assets/img/usb.gif');
+new Product('Water can', 'assets/img/water-can.jpg');
+new Product('Wine glass', 'assets/img/wine-glass.jpg');
 
 console.log(allProduct);
 
@@ -93,6 +106,8 @@ function handleClick(event) {
             listItem.textContent = allProduct[i].name + 'has ' + allProduct[i].numberOfClicks + ' clicks, and ' + allProduct[i].timeShown + ' time shown';
             finalResult.appendChild(listItem);
         }
+
+        productSection.removeEventListener('click', handleClick);
     }
 
 

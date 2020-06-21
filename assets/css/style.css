@@ -1,0 +1,38 @@
+header {
+    text-align: center;
+    height: 100px;
+    background-color: #204051;
+    margin-bottom: 70px;
+}
+header h1 {
+    line-height: 100px;
+    color: #e7dfd5;
+}
+main img {
+    width: calc(800px / 3);
+    margin: 0px;
+}
+
+#all_product {
+    width: 820px;
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+#finalResult {
+    list-style-type: none;
+    width: 820px;
+    margin: auto;
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;  
+}
+#finalResult li {
+    line-height: 30px;
+    background-color: #3b6978;
+    color: #fff;
+    padding: 10px;
+}
+#finalResult li:nth-child(odd) {
+    background-color: #84a9ac;
+}
