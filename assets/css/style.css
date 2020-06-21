@@ -9,8 +9,12 @@ header h1 {
     color: #e7dfd5;
 }
 main img {
-    width: calc(800px / 3);
+    width: calc(740px / 3);
     margin: 0px;
+    height: 250px;
+    border: 2px solid #84a9ac;
+    border-radius: 20px;
+    padding: 10px;
 }
 
 #all_product {
