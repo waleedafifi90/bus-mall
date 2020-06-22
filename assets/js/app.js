@@ -36,7 +36,7 @@ new Product('Dragon', 'assets/img/dragon.jpg');
 new Product('Pen', 'assets/img/pen.jpg');
 new Product('Pet sweep', 'assets/img/pet-sweep.jpg');
 new Product('Scissors', 'assets/img/scissors.jpg');
-new Product('Sweep', 'assets/img/sweep.jpg');
+new Product('Sweep', 'assets/img/sweep.png');
 new Product('Tauntaun', 'assets/img/tauntaun.jpg');
 new Product('Shark', 'assets/img/shark.jpg');
 new Product('Unicorn', 'assets/img/unicorn.jpg');
