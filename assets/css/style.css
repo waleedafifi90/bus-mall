@@ -52,3 +52,9 @@ main img {
 #finalResult li:nth-child(odd) {
     background-color: #84a9ac;
 }
+
+canvas {
+    width: 800px!important;
+    height: 500px!important;
+    margin: auto;
+}
