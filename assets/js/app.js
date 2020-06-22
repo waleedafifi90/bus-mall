@@ -14,6 +14,10 @@ var currentLeftImage;
 var currentRightImage;
 var currentcenterImage;
 
+var previousLeftImageIndex;
+var previousMiddelImageIndex;
+var previousrightImageIndex;
+
 function Product(name, url) {
     this.name = name;
     this.url = url;
@@ -47,15 +51,30 @@ new Product('Wine glass', 'assets/img/wine-glass.jpg');
 console.log(allProduct);
 
 function pickImages() {
-    var leftIndex = generateRandomNumber();
-    var centerIndex = generateRandomNumber();
-    var rightIndex = generateRandomNumber();
 
-    while(leftIndex === rightIndex || leftIndex === centerIndex || rightIndex === centerIndex) {
-        centerIndex = generateRandomNumber();
-        rightIndex = generateRandomNumber();
-        leftIndex = generateRandomNumber();
+    var imageBox = [];
+
+    if (totalClicks > 0) {
+        imageBox = [previousLeftImageIndex, previousMiddelImageIndex, previousrightImageIndex];
     }
+
+
+    var leftIndex = generateRandomNumber(imageBox);
+    imageBox.push(leftIndex);
+    var centerIndex = generateRandomNumber(imageBox);
+    imageBox.push(centerIndex);
+    var rightIndex = generateRandomNumber(imageBox);
+
+
+    previousLeftImageIndex = leftIndex;
+    previousMiddelImageIndex = centerIndex;
+    previousrightImageIndex = rightIndex;
+
+    // while(leftIndex === rightIndex || leftIndex === centerIndex || rightIndex === centerIndex) {
+    //     centerIndex = generateRandomNumber();
+    //     rightIndex = generateRandomNumber();
+    //     leftIndex = generateRandomNumber();
+    // }
 
     leftImage.setAttribute('src', allProduct[leftIndex].url);
     centerImage.setAttribute('src', allProduct[centerIndex].url);
@@ -70,8 +89,29 @@ function pickImages() {
     allProduct[rightIndex].timeShown += 1;
 }
 
-function generateRandomNumber() {
-    return Math.floor(Math.random() * allProduct.length);
+function generateRandomNumber(imageBox) {
+    var random;
+    var allowed;
+    do {
+
+        random = Math.floor(Math.random() * allProduct.length);
+        allowed = true;
+
+        for (var i = 0; i < imageBox.length; i++) {
+
+
+            if (imageBox[i] === random) {
+                allowed = false;
+
+            }
+
+        }
+    } while (!allowed);
+
+
+    return random;
+
+    // return Math.floor(Math.random() * allProduct.length);
 }
 
 pickImages();
@@ -86,7 +126,7 @@ function handleClick(event) {
 
         if (clickedElementId === 'left_img' || clickedElementId === 'center_img' || clickedElementId === 'right_img') {
             totalClicks++;
-        
+
             if (clickedElementId === 'left_img') {
                 currentLeftImage.numberOfClicks += 1;
             }
@@ -101,9 +141,9 @@ function handleClick(event) {
             pickImages();
         }
     } else {
-        for(var i = 0; i < allProduct.length; i++) {
+        for (var i = 0; i < allProduct.length; i++) {
             var listItem = document.createElement('li');
-            listItem.textContent = allProduct[i].name + 'has ' + allProduct[i].numberOfClicks + ' clicks, and ' + allProduct[i].timeShown + ' time shown';
+            listItem.textContent = allProduct[i].name + ' has ' + allProduct[i].numberOfClicks + ' clicks, and ' + allProduct[i].timeShown + ' time shown';
             finalResult.appendChild(listItem);
         }
 
