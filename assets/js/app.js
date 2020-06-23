@@ -4,11 +4,12 @@ var productSection = document.getElementById('all_product');
 var leftImage = document.getElementById('left_img');
 var centerImage = document.getElementById('center_img');
 var rightImage = document.getElementById('right_img');
-var finalResult = document.getElementById('finalResult');
+// var finalResult = document.getElementById('finalResult');
 
 var allProduct = [];
 var totalClicks = 0;
 
+// var newJSONArray = [];
 
 var currentLeftImage;
 var currentRightImage;
@@ -27,6 +28,7 @@ function Product(name, url) {
     this.timeShown = 0;
     allProduct.push(this);
     productName.push(this.name);
+    // localStorage.setItem(this.name+"_Storage", JSON.stringify(this));
 }
 
 
@@ -50,8 +52,6 @@ new Product('Unicorn', 'assets/img/unicorn.jpg');
 new Product('Usb', 'assets/img/usb.gif');
 new Product('Water can', 'assets/img/water-can.jpg');
 new Product('Wine glass', 'assets/img/wine-glass.jpg');
-
-console.log(allProduct);
 
 function pickImages() {
 
@@ -87,9 +87,19 @@ function pickImages() {
     currentRightImage = allProduct[rightIndex];
     currentcenterImage = allProduct[centerIndex];
 
-    allProduct[leftIndex].timeShown += 1;
-    allProduct[centerIndex].timeShown += 1;
-    allProduct[rightIndex].timeShown += 1;
+
+    currentLeftImage.timeShown = Number(localStorage.getItem(currentLeftImage.name+'_timeOfShown'));
+    currentLeftImage.timeShown += 1;
+    localStorage.setItem(currentLeftImage.name+'_timeOfShown', currentLeftImage.timeShown);
+
+    currentcenterImage.timeShown = Number(localStorage.getItem(currentcenterImage.name+'_timeOfShown'));
+    currentcenterImage.timeShown += 1;
+    localStorage.setItem(currentcenterImage.name+'_timeOfShown', currentcenterImage.timeShown);
+
+    currentRightImage.timeShown = Number(localStorage.getItem(currentRightImage.name+'_timeOfShown'));
+    currentRightImage.timeShown += 1;
+    localStorage.setItem(currentRightImage.name+'_timeOfShown', currentRightImage.timeShown);
+
 }
 
 function generateRandomNumber(imageBox) {
@@ -131,16 +141,23 @@ function handleClick(event) {
             totalClicks++;
 
             if (clickedElementId === 'left_img') {
+                currentLeftImage.numberOfClicks = Number(localStorage.getItem(currentLeftImage.name));
                 currentLeftImage.numberOfClicks += 1;
+                localStorage.setItem(currentLeftImage.name, currentLeftImage.numberOfClicks);
             }
 
             if (clickedElementId === 'center_img') {
-                currentRightImage.numberOfClicks += 1;
+                currentcenterImage.numberOfClicks = Number(localStorage.getItem(currentcenterImage.name));
+                currentcenterImage.numberOfClicks += 1;
+                localStorage.setItem(currentcenterImage.name, currentcenterImage.numberOfClicks);
             }
 
             if (clickedElementId === 'right_img') {
+                currentRightImage.numberOfClicks = Number(localStorage.getItem(currentRightImage.name));
                 currentRightImage.numberOfClicks += 1;
+                localStorage.setItem(currentRightImage.name, currentRightImage.numberOfClicks);
             }
+
             pickImages();
         }
     } else {
@@ -149,14 +166,22 @@ function handleClick(event) {
         //     listItem.textContent = allProduct[i].name + ' has ' + allProduct[i].numberOfClicks + ' clicks, and ' + allProduct[i].timeShown + ' time shown';
         //     finalResult.appendChild(listItem);
         // }
-        drawChart();
+
+        localStorage.setItem('Products', JSON.stringify(allProduct));
+        console.log(JSON.parse(localStorage.getItem('Products')));
+
+        allProduct = JSON.parse(localStorage.getItem('Products'));
+        // newJSONArray = JSON.parse(localStorage.getItem('Products'));
+
         productSection.removeEventListener('click', handleClick);
+                drawChart();
+
     }
 
 
-    console.log(currentRightImage);
-    console.log(currentLeftImage);
-    console.log(currentcenterImage);
+    // console.log(currentRightImage);
+    // console.log(currentLeftImage);
+    // console.log(currentcenterImage);
 }
 
 function drawChart() {
@@ -204,6 +229,24 @@ function drawChart() {
             }
         }
     });
+}
 
+function buatJson() {
+    var el_up = document.getElementById("GFG_UP"); 
+        var el_down = document.getElementById("GFG_DOWN"); 
+        var obj = { 
+            "prop_1": { 
+                "prop_11": "val_11", 
+                "prop_12": "val_12" 
+            }, 
+            "prop_2": "val_2", 
+            "prop_3": "val_3" 
+        }; 
+      
+        el_up.innerHTML = JSON.stringify(obj); 
+  
+        function gfg_Run() { 
+            el_down.innerHTML = JSON.stringify(obj, undefined, 4); 
+        } 
 
 }
