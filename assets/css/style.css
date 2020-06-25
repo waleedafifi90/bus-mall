@@ -19,6 +19,8 @@ header {
 header h1 {
     line-height: 100px;
     color: #e7dfd5;
+        border-width: 5px;
+        border: dashed blue;
 }
 main img {
     width: calc(740px / 3);
@@ -57,4 +59,13 @@ canvas {
     width: 800px!important;
     height: 500px!important;
     margin: auto;
+}
+
+#txtCounter {
+    width: 10em;
+    margin: 0 auto;
+    display: block;
+    height: 30px;
+    text-align: center;
+    margin-bottom: 20px;
 }
